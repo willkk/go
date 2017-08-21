@@ -7,40 +7,55 @@
 
 变量声明
 
+![](https://github.com/willkk/go/blob/master/images/gobase_var.png)
+
 结构体声明
 
+![](https://github.com/willkk/go/blob/master/images/gobase_struct.png)
+
 函数声明
+
+![](https://github.com/willkk/go/blob/master/images/gobase_func.png)
+
 #### b)语句（for, go, defer, select, switch）
-
-
-
 
 for语句
 
+![](https://github.com/willkk/go/blob/master/images/gobase_for.png)
+
 defer语句
+
+![](https://github.com/willkk/go/blob/master/images/gobase_defer.png)
 
 switch语句
 
+![](https://github.com/willkk/go/blob/master/images/gobase_switch.png)
+
 select语句
+
+![](https://github.com/willkk/go/blob/master/images/gobase_select.png)
+
 #### c)包管理
 
 代码行宽：建议80-120个字符宽度（go语言是80字符宽度）。
 
+![](https://github.com/willkk/go/blob/master/images/gobase_linewidth.png)
 
-代码宽度：80列
 包内变量和函数：Go采用大小驼峰命名法来命名变量和函数，实现其显隐性(下划线适合过程函数，驼峰适合对象)；建议就近声明变量、常量和函数（局部化，模块化）。
 
+![](https://github.com/willkk/go/blob/master/images/gobase_camel.png)
 
-包内变量命名规则：大小驼峰
 包初始化：在包内每个文件提供func init() {}来完成该包内全部的初始化工作。
 
+![](https://github.com/willkk/go/blob/master/images/gobase_initfunc.png)
 
 包文件及目录命名：目录及文件名称小写，尽量简短；必要时可用下划线。
 
+![](https://github.com/willkk/go/blob/master/images/gobase_filedir.png)
 
-包文件及目录命名：简短
 包目录结构：各子模块如果可以一个go源文件完成就不再建立目录；否则建立独立子目录存放该模块的多个文件。包级公共模块放在包顶级目录。
 
+![](https://github.com/willkk/go/blob/master/images/gobase_pkgsubdir.png)
 
 目录管理：子目录管理单个子模块
 ## 2.数据类型
