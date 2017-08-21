@@ -57,7 +57,6 @@ select语句
 
 ![](https://github.com/willkk/go/blob/master/images/gobase_pkgsubdir.png)
 
-目录管理：子目录管理单个子模块
 ## 2.数据类型
 
 #### a) channel(内存队列, 读/写/读写)
