@@ -26,13 +26,39 @@ import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/c
 
 ![](https://github.com/willkk/go/blob/master/images/goskill_jsonparse.png)
 
-## 5. log库(seelog)
+## 5. 函数：返回命名参数
+
+对返回参数命名和传入参数命名是一样的，都会生成对应类型的空对象，比如int为0，string为""，map，chan和pointer为nil。恰当使用可以节省大量冗余代码。
+
+普通代码：
+
+![](https://github.com/willkk/go/blob/master/images/goskill_func.png)
+![](https://github.com/willkk/go/blob/master/images/goskill_func2.png)
+
+使用命名返回参数：
+
+![](https://github.com/willkk/go/blob/master/images/goskill_func_new.png)
+![](https://github.com/willkk/go/blob/master/images/goskill_func_new2.png)
+
+## 6. defer函数
+
+恰当使用defer函数，减少冗余代码。
+
+普通代码：
+
+![](https://github.com/willkk/go/blob/master/images/goskill_nodefer.png)
+
+defer:
+
+![](https://github.com/willkk/go/blob/master/images/goskill_defer.png)
+
+## 7. log库(seelog)
 
 第三方库seelog: 支持同步/异步（获取频率：循环，定时，自适应）；支持丰富的输出级别，格式，终端和颜色；支持不同级别log的文件过滤；支持log文件回滚；支持动态更新logger设置。
 
 实现自定义格式log：runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加前缀log.SetPrefix(); os.Getpid()获取PID等。
 
-## 6. web framework(beego, iris，martini等)
+## 8. web framework(beego, iris，martini等)
 
 beego使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。
 
