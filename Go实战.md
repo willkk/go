@@ -58,6 +58,9 @@ defer:
 
 实现自定义格式log：runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加前缀log.SetPrefix(); os.Getpid()获取PID等。
 
+好的log格式举例（SRS）：
+
+
 ## 8. web framework(beego, iris，martini等)
 
 beego使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。
