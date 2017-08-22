@@ -16,6 +16,8 @@ import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/c
 
 ![](https://github.com/willkk/go/blob/master/images/goskill_jsonconf.png)
 
+说明：可选字段可以声明成指针类型，json在解析时，如果没有设置该字段，指针为nil。同样可以用在json消息可选字段的场景。
+
 配置文件，如server.conf：
 
 ![](https://github.com/willkk/go/blob/master/images/goskill_jsonfile.png)
