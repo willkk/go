@@ -54,15 +54,31 @@ defer:
 
 ## 7. log库(seelog)
 
-第三方库seelog: 支持同步/异步（获取频率：循环，定时，自适应）；支持丰富的输出级别，格式，终端和颜色；支持不同级别log的文件过滤；支持log文件回滚；支持动态更新logger设置。
+#### 第三方库seelog: 
 
-实现自定义格式log：runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加前缀log.SetPrefix(); os.Getpid()获取PID等。
+支持同步/异步（获取频率：循环，定时，自适应）；支持丰富的输出级别，格式，终端和颜色；支持不同级别log的文件过滤；支持log文件回滚；支持动态更新logger设置。
+
+#### 实现自定义格式log：
+
+runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加前缀log.SetPrefix(); os.Getpid()获取PID等。
 
 好的log格式举例（SRS）：
 
+![](https://github.com/willkk/go/blob/master/images/goskill_srslog.png)
+
+#### 说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request，比如请求的userid，协程的id，线程id等。快速查看单个请求的全流程结果，方便定位功能级和业务级错误。错误号定义：分类定义，如http 1xx-5xx。
 
 ## 8. web framework(beego, iris，martini等)
 
 beego使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。
 
-MVC：主要做web界面，不细讲。M：Model，数据模型，一般映射数据库表；V：View，视图，一般通过template生成，页面上有占位符，后端代码只需要填充数据到占位符即可；C：Controller，控制器，连接页面View和后端数据库Model，实现控制逻辑。
+MVC(应用分层)：
+
+M：Model，数据模型，一般映射数据库表，作为数据层；V：View，视图，一般通过template生成，页面上有占位符，后端代码只需要填充数据到占位符即可，作为表示层；C：Controller，控制器，连接页面View和后端数据库Model，实现控制逻辑，作为逻辑层。
+
+|   View    |
+|-----------|
+| Controller|
+|   Model   |
+| DataBase  |
+
