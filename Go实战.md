@@ -9,7 +9,7 @@ import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/c
 ## 4. 配置文件(json config)  
 配置文件struct定义：  
 ![](https://github.com/willkk/go/blob/master/images/goskill_jsonconf.png)  
-#### 说明：可选字段可以声明成指针类型，json在解析时，如果没有设置该字段，指针为nil。同样可以用在json消息可选字段的场景。  
+**说明：可选字段可以声明成指针类型，json在解析时，如果没有设置该字段，指针为nil。同样可以用在json消息可选字段的场景。**  
 配置文件，如server.conf：  
 ![](https://github.com/willkk/go/blob/master/images/goskill_jsonfile.png)  
 使用时：  
@@ -43,7 +43,7 @@ runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加
 好的log格式举例（SRS）：  
 ![](https://github.com/willkk/go/blob/master/images/goskill_srslog.png)
 
-#### 说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request，比如请求的userid，协程的id，线程id等。快速查看单个请求的全流程结果，方便定位功能级和业务级错误。错误号定义：分类定义，如http 1xx-5xx。
+**说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request，比如请求的userid，协程的id，线程id等。快速查看单个请求的全流程结果，方便定位功能级和业务级错误。错误号定义：分类定义，如http 1xx-5xx。**
 
 ## 8. web framework(beego, iris，martini等)  
 beego:使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。  
