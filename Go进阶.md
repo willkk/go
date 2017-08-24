@@ -4,15 +4,23 @@
 **a) 面向过程（通过包级别的显隐控制，实现对外接口）：** 将特定目的的计算过程封装成函数，数据以参数形式传入和传出，数据组织能力限制在函数参数。
 适用场景：底层工具类模块，不涉及数据的封装，比如数学，加解密，IO等。不适合场景：上层复杂业务逻辑封装，函数太多，不利于业务逻辑和信息流的组织管理。信息组织粒度是函数。
 
-应用举例，encoding/json包定义：
+应用举例，encoding/json包定义：  
 
-使用时：
+![](https://github.com/willkk/go/blob/master/images/goadvance_procdef.png)  
+
+使用时：  
+
+![](https://github.com/willkk/go/blob/master/images/goadvance_procuse.png)  
 
 **b) 面向对象（类型实现基本的成员函数，提供对外的操作接口）：** 将一组逻辑上关联的函数封装成对象，数据作为对象成员被这组函数共享。数据组织能力为类型本身包含的数据块。
 
 适用场景：复杂业务逻辑和流程的封装。不适用场景：底层工具类的封装。信息组织粒度提升到了对象或模块。
 
 应用举例，net/http包Server类型：　
+![](https://github.com/willkk/go/blob/master/images/goadvance_classservermux.png)  
+![](https://github.com/willkk/go/blob/master/images/goadvance_classserver.png)  
+
+**使用时，通过包级别的接口对外开放。**
 
 **c) 面向接口：** 将一组逻辑上关联的对象的公共行为抽象出来封装成接口，使用这些接口时需要生成具体的实现类型。数据组织能力为实现该公共行为集合的全部类型。
 
@@ -20,18 +28,20 @@
 
 适用场景：模块级或应用程序及架构设计。不适用场景：底层工具类型，中间层次的对象等小模块类型。
 
-应用举例，hash包：
+应用举例，hash包：  
+![](https://github.com/willkk/go/blob/master/images/goadvance_interfacehash.png)  
 
-hash包里面的adler32，crc32，crc64和fnv分别实现对应接口，构造函数返回对应上述接口类型。
+hash包里面的adler32，crc32，crc64和fnv分别实现对应接口，构造函数返回对应上述接口类型。  
 
-adler32：
+fnv：  
+![](https://github.com/willkk/go/blob/master/images/goadvance_interfacehashfnv.png)  
 
-crc32：
+**使用时，声明interface类型或指针即可指向任意子类型。**
 
 **d) 常见设计模式（主要解决耦合，可扩展性，性能问题）：**
 
 | 设计模式 | 应用举例 | 目的/好处
-| --------| -----| ----  |
+| --------| -----| ----  
 | 单例模式 | json配置文件+config结构体，处理配置文件模块|	中心维护，动态更新，避免重复读取，省去大量配置操作代码。
 | 工厂模式 | 使用工厂模式生成系统全部的Commands| 抽象公共Command接口和基类型，定义各子类型；<br />重新组织代码，继承减少重复代码；<br />面向接口编程，提高代码复用度和可扩展性。
 | 享元模式 | 使用连接池管理底层mysql和redis数据库连接|降低昂贵资源反复创建的开销，降低端口使用量。
@@ -62,6 +72,12 @@ crc32：
 <tr><td>消息处理模块</td></tr>
 <tr><td>数据库访问模块</td></tr>
 </table>
+
+#### 消息路由模块  
+**net/http：**  
+
+**Iris：**
+
 
 ## 2. 常用第三方库
 
