@@ -29,6 +29,7 @@
 适用场景：模块级或应用程序及架构设计。不适用场景：底层工具类型，中间层次的对象等小模块类型。
 
 应用举例，hash包：  
+
 ![](https://github.com/willkk/go/blob/master/images/goadvance_interfacehash.png)  
 
 hash包里面的adler32，crc32，crc64和fnv分别实现对应接口，构造函数返回对应上述接口类型。  
@@ -95,13 +96,15 @@ cond(yes)->op5->op7->e
 cond(no)->op6->e
 
 -->
-![](https://github.com/willkk/go/blob/master/images/goadvance_nethttp.svg)  
+![](https://github.com/willkk/go/blob/master/images/goadvance_nethttp2.png)  
 
-<img src="https://github.com/willkk/go/blob/master/images/goadvance_nethttp.svg">
+**重点是map保存全部的path信息，对进入的request进行过滤，找到对应的handler。如果使用自定义的Handler，用户需要自己完成类似工作。**
 
 **Iris：**
 
+![]()
 
+**不同之处是，**
 
 ## 2. 常用第三方库
 
