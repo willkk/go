@@ -6,19 +6,19 @@
 
 应用举例，encoding/json包定义：  
 
-![](https://github.com/willkk/go/blob/master/images/goadvance_procdef.png)  
+![方法定义](https://github.com/willkk/go/blob/master/images/goadvance_procdef.png "方法定义")
 
 使用时：  
 
-![](https://github.com/willkk/go/blob/master/images/goadvance_procuse.png)  
+![工厂方法](https://github.com/willkk/go/blob/master/images/goadvance_procuse.png)  
 
 **b) 面向对象（类型实现基本的成员函数，提供对外的操作接口）：** 将一组逻辑上关联的函数封装成对象，数据作为对象成员被这组函数共享。数据组织能力为类型本身包含的数据块。
 
 适用场景：复杂业务逻辑和流程的封装。不适用场景：底层工具类的封装。信息组织粒度提升到了对象或模块。
 
 应用举例，net/http包Server类型：　
-![](https://github.com/willkk/go/blob/master/images/goadvance_classservermux.png)  
-![](https://github.com/willkk/go/blob/master/images/goadvance_classserver.png)  
+![ServerMux](https://github.com/willkk/go/blob/master/images/goadvance_classservermux.png)  
+![Server](https://github.com/willkk/go/blob/master/images/goadvance_classserver.png)  
 
 **使用时，通过包级别的接口对外开放。**
 
@@ -66,7 +66,7 @@ fnv：
 <table>
 <tr>
 <td rowspan="4" height="300" align="center">应用</td>
-<td>消息接入模块</td>  
+<td>消息接入模块</td>  
 </tr>
 <tr><td>消息路由模块</td></tr>
 <tr><td>消息处理模块</td></tr>
@@ -74,7 +74,26 @@ fnv：
 </table>
 
 #### 消息路由模块  
+
 **net/http：**  
+
+```flow
+st=>start: Server.Serve
+op1=>operation: Accept
+op2=>operation: go routine
+op3=>operation: ServerHandler.ServeHTTP
+cond=>condition: User handler is nil?
+op4=>operation: ServerMux
+op5=>operation: DefaultServeMux.ServeHTTP
+op6=>operation: UserHandler.ServeHTTP
+op7=>operation: mux.m[req.path].ServeHTTP
+
+e=>end
+st->op1->op2->op3->cond
+cond(yes)->op5->op7->e
+cond(no)->op6->e
+```
+
 
 **Iris：**
 
@@ -85,7 +104,7 @@ fnv：
 
 分库：避免key冲突，类似c++的namespace。只支持数字分库。
 
-**sharding方案（分片 http://www.jianshu.com/p/14835303b07e）**
+**Sharding方案（分片 http://www.jianshu.com/p/14835303b07e）**
 
 |Sharding方案| 类型|	特点|	优点|	缺点
 | -- | -- | -- | -- | -- 
