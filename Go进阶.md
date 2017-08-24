@@ -77,7 +77,8 @@ fnv：
 
 **net/http：**  
 
-```flow
+<!--  
+flow
 st=>start: Server.Serve
 op1=>operation: Accept
 op2=>operation: go routine
@@ -92,10 +93,14 @@ e=>end
 st->op1->op2->op3->cond
 cond(yes)->op5->op7->e
 cond(no)->op6->e
-```
 
+-->
+![](https://github.com/willkk/go/blob/master/images/goadvance_nethttp.svg)  
+
+<img src="https://github.com/willkk/go/blob/master/images/goadvance_nethttp.svg">
 
 **Iris：**
+
 
 
 ## 2. 常用第三方库
