@@ -45,7 +45,7 @@ runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加
 
 **说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request，比如请求的userid，协程的id，线程id等。快速查看单个请求的全流程结果，方便定位功能级和业务级错误。错误号定义：分类定义，如http 1xx-5xx。**
 
-## 8. web framework(beego, iris，martini等)  
+## 8. web framework(beego, iris等)  
 beego:使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。  
 Iris: 速度最快的web framework，简单。 
 
