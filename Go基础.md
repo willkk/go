@@ -11,7 +11,7 @@
 
 结构体声明
 
-![](https://github.com/willkk/go/blob/master/images/gobase_struct.png)
+![](https://github.com/willkk/go/blob/master/images/gobase_typedef.png)
 
 函数声明
 
