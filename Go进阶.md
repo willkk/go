@@ -53,7 +53,7 @@ fnv：
 
 <table>
 <tr><td colspan="6" align="center">应用</td></tr>
-<tr height="120"><td>日志模块</td>
+<tr height="200"><td>日志模块</td>
 <td>配置模块</td>
 <td>消息处理模块</td>
 <td>数据库模块</td>
