@@ -52,14 +52,15 @@ Iris: 速度最快的web framework，简单。
 MVC(应用分层)：  
 M：Model，数据模型，一般映射数据库表，作为数据层；V：View，视图，一般通过template生成，页面上有占位符，后端代码只需要填充数据到占位符即可，作为表示层；C：Controller，控制器，连接页面View和后端数据库Model，实现控制逻辑，作为逻辑层。  
 
-![](https://github.com/willkk/go/blob/master/images/goskill_mvc.png)  
-
-**思想：将数据与表现解耦，提高代码的复用性。**
-
+<!--
 <table >
   <tr> <td height="60" width="320" align="center">View</td> </tr>
   <tr> <td height="60" width="320" align="center">Controller</td> </tr>
   <tr> <td height="60" width="320" align="center">Model</td> </tr>
   <tr> <td height="60" width="320" align="center">DB</td> </tr>
 </table>
+-->
+![](https://github.com/willkk/go/blob/master/images/goskill_mvc.png)  
+
+**思想：将数据与表现解耦，提高代码的复用性。**
 
