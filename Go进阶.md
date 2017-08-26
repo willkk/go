@@ -100,9 +100,16 @@ cond(no)->op6->e
 
 **重点是map保存全部的path信息，对进入的request进行过滤，找到对应的handler。如果使用自定义的Handler，用户需要自己完成类似工作。**
 
-**Iris：**
+**Iris：（使用自定义Handler）**
+Iris使用了自己的Handler来替代系统的默认Handler(DefaultServeMux)。
 
 ![]()
+
+| 框架      |  实现 |  优势   
+| -- |  --  | -- 
+| net/http |  map[pattern]Handler，pattern是扁平匹配。   | 1. map查询较快
+| Iris     | 多级目录树查询，tree(key:subdomain, value:Handler)  | 1. tree匹配RESTful路径。<br/>2. 建立Context池，多个Request之间复用，避免重复的内存分配。
+
 
 **不同之处是，**
 
