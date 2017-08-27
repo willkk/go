@@ -170,7 +170,7 @@ type Post struct {
     Tags  []*Tag `orm:"rel(m2m)"`
 }
 ```
-CRUD：
+CRUD：  
 C：
 ```go
 o := orm.NewOrm()
