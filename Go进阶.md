@@ -217,8 +217,8 @@ if num, err := o.Delete(&User{Id: 1}); err == nil {
 
 |方案 |实现| 特点	
 | -- | -- | -- 
-|RESTful(REpresentational State Transfer)| 通过URI标识资源，资源的操作抽象为多个状态的转移。|1. 资源的标识通过URI确定，资源的操作通过HTTP的GET，POST，DELETE，PUT等方法。<br/>2. 一般适合于公共服务资源调用。<br/> 3.各请求间是无状态的。
-|RPC(Remote Procedure Call)|通过特定的消息协议格式进行远程过程调用。（特定地址+函数）|1. 消息格式可以是文本或二进制，原文或经过压缩。<br/>2. 适合轻量型数据操作，即RPC的本意，函数+参数。<br/>3. 一般适合企业内部服务间通信。
+|**REST**ful(**RE**presentational **S**tate **T**ransfer)| 通过URI标识资源，资源的操作抽象为多个状态的转移。|1. 资源的标识通过URI确定，资源的操作通过HTTP的GET，POST，DELETE，PUT等方法。<br/>2. 一般适合于公共服务资源调用。<br/> 3.各请求间是无状态的。
+|**RPC**(**R**emote **P**rocedure **C**all)|通过特定的消息协议格式进行远程过程调用。（特定地址+函数）|1. 消息格式可以是文本或二进制，原文或经过压缩。<br/>2. 适合轻量型数据操作，即RPC的本意，函数+参数。<br/>3. 一般适合企业内部服务间通信。
 
 **RESTful典型应用（api.github.com）：**
 
