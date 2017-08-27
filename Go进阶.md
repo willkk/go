@@ -215,10 +215,10 @@ if num, err := o.Delete(&User{Id: 1}); err == nil {
 　　　　
 ### d) RESTful/RPC（http://www.ruanyifeng.com/blog/2014/05/restful_api.html）
 
-|方案 |实现|	优点|	缺点
-| -- | -- | -- |--
-|RESTful(REpresentational State Transfer)| 通过特定格式的URL标识资源，资源的操作抽象为多个状态的转移。（统一表示+状态转移）|1. 统一格式标识资源。<br/>2. 常用的CRUD操作。<br/>3. 适合公共服务资源调用。|1. 性能低。<br/>2. 仅适合可进行状态抽象的业务。 
-|RPC(Remote Procedure Call)|通过特定的消息协议格式进行远程过程调用。（预定函数名称和参数是+远程过程调用）|1. 消息格式可以是文本或二进制，原文或经过压缩。<br/>2. 性能高。<br/>3. 适合轻量型数据操作，即RPC的本意，函数+参数。<br/>4. 适合企业内部服务间通信。|1. 双方需要提前商定消息协议格式。 
+|方案 |实现| 特点	
+| -- | -- | -- 
+|RESTful(REpresentational State Transfer)| 通过URI标识资源，资源的操作抽象为多个状态的转移。|1. 资源的标识通过URI确定，资源的操作通过HTTP的GET，POST，DELETE，PUT等方法。<br/>2. 一般适合于公共服务资源调用。<br/> 3.各请求间是无状态的。
+|RPC(Remote Procedure Call)|通过特定的消息协议格式进行远程过程调用。（特定地址+函数）|1. 消息格式可以是文本或二进制，原文或经过压缩。<br/>2. 适合轻量型数据操作，即RPC的本意，函数+参数。<br/>3. 一般适合企业内部服务间通信。
 
 **RESTful典型应用（api.github.com）：**
 
