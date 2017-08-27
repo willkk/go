@@ -95,23 +95,29 @@ st->op1->op2->op3->cond
 cond(yes)->op5->op7->e
 cond(no)->op6->e
 
+```flow
+st=>start: Accept
+op1=>operation: go routine
+op2=>operation: ctx := pool.Acquire(w,r)
+op3=>operation: Router.Find(route)(ctx)
+op4=>operation: pool.Release(ctx)
+e=>end
+st->op1->op2->op3->op4->e
+```
+
 -->
 ![](https://github.com/willkk/go/blob/master/images/goadvance_nethttp2.png)  
 
 **重点是map保存全部的path信息，对进入的request进行过滤，找到对应的handler。如果使用自定义的Handler，用户需要自己完成类似工作。**
 
 **Iris：（使用自定义Handler）**
-Iris使用了自己的Handler来替代系统的默认Handler(DefaultServeMux)。
-
-![]()
+Iris使用了自己的Handler来替代系统的默认Handler(DefaultServeMux)。  
+![](https://github.com/willkk/go/blob/master/images/goadvance_iris.png)
 
 | 框架      |  实现 |  优势   
 | -- |  --  | -- 
 | net/http |  map[pattern]Handler，pattern是扁平匹配。   | 1. map查询较快
-| Iris     | 多级目录树查询，tree(key:subdomain, value:Handler)  | 1. tree匹配RESTful路径。<br/>2. 建立Context池，多个Request之间复用，避免重复的内存分配。
-
-
-**不同之处是，**
+| Iris     | 多级目录树查询，tree(key:subdomain, value:Handler) <br > 建立Context池，多个Request之间复用，避免重复的内存分配。| 1. tree匹配RESTful路径.
 
 ## 2. 常用第三方库
 
@@ -142,6 +148,8 @@ ORM：对象关系映射，就是把数据库表映射成一个类型（C++的�
 https://beego.me/docs/mvc/model/object.md
 
 定义：
+
+```go
 type User struct {
     Id          int
     Name        string
@@ -161,8 +169,10 @@ type Post struct {
     User  *User  `orm:"rel(fk)"`    //设置一对多关系
     Tags  []*Tag `orm:"rel(m2m)"`
 }
+```
 CRUD：
 C：
+```go
 o := orm.NewOrm()
 var user User
 user.Name = "slene"
@@ -172,12 +182,16 @@ id, err := o.Insert(&user)
 if err == nil {
     fmt.Println(id)
 }
+```
 R：
+```go
 o := orm.NewOrm()
 user := User{Id: 1}
 
 err := o.Read(&user)
+```
 U：
+```go
 o := orm.NewOrm()
 user := User{Id: 1}
 if o.Read(&user) != nil {
@@ -186,11 +200,14 @@ if o.Read(&user) != nil {
         fmt.Println(num)
     }
 }
+```
 D：
+```go
 o := orm.NewOrm()
 if num, err := o.Delete(&User{Id: 1}); err == nil {
     fmt.Println(num)
 }
+```  
 ### c) RabbitMQ(作用, 优缺点)
 
 异步，可靠。
