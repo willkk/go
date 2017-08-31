@@ -113,4 +113,6 @@ channel一般用途：
 
 2) channel作为信号管道，用于控制程序执行逻辑，如程序的分阶段执行以及goroutine的退出。
 
+**并发or并行**
+
 https://talks.golang.org/2012/waza.slide
