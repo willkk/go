@@ -112,3 +112,5 @@ channel一般用途：
 1) channel作为数据队列，用于排队请求和返回消息。
 
 2) channel作为信号管道，用于控制程序执行逻辑，如程序的分阶段执行以及goroutine的退出。
+
+https://talks.golang.org/2012/waza.slide
