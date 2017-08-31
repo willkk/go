@@ -83,7 +83,17 @@ method可以定义在任何类型上，除了指针和interface接口。比如�
 
 #### e) func(过程函数, 成员函数, 参数名)
 
-（参考函数定义部分）
+闭包closure：  
+```go
+func Compose(f, g func(x float) float)
+                  func(x float) float {
+     return func(x float) float {
+        return f(g(x))
+    }
+}
+
+print(Compose(sin, cos)(0.5))
+```
 
 ## 3.并发模型
 
