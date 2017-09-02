@@ -1,0 +1,28 @@
+Go 原理到进阶
+CDN产品部
+
+吴小川
+
+2017-9-15
+
+
+* Go原理
+*协程:*
+
+1. 基于函数之间的长跳转setjmp/longjmp。
+2. 函数栈分配在堆上，可动态伸缩。
+3. 函数之间的上下文切换开销小。
+
+
+* Go原理(cont)
+*Go调度*
+三个主要结构：M（负责管理内核线程），P（负责goroutine上下文切换），G（goroutine）
+.image images/gopher.png
+
+
+* Go基础
+
+* Go实战
+
+* Go进阶
+
