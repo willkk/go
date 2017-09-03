@@ -1,10 +1,10 @@
 Go 原理到进阶
-CDN产品部
-
-吴小川
-
 2017-9-15
 
+吴小川
+CDN产品部
+
+* Go原理
 
 * Go原理
 # 通用协程实现原理
@@ -13,8 +13,8 @@ CDN产品部
 1. 基于函数之间的长跳转setjmp/longjmp。
 2. 函数栈分配在堆上，可动态伸缩。
 3. 函数之间的上下文切换开销小。
-
-* Go原理(cont)
+.image images/go_threads.png
+* Go原理
 # 当前go调度逻辑
 *Go调度:*
 
@@ -40,13 +40,101 @@ CDN产品部
 
 G - goroutine; P - logical processor; M - OS thread (machine)
 
-* Go原理(cont)
+* Go原理
 # go调度图示
-.image images/ 
+地鼠搬砖：
+.image images/gopher.png
+进程启动的时候生成一个主Gopher（M），并最多生成GOMAXPROCS（不大于系统逻辑核心数）个小车（P）。go命令随后创建goroutine（书，G）。砖太多，小车空闲，就创建新的地鼠M去搬砖。
+.image images/gopher2.png
 
 * Go基础
 
+* Go基础
+- 基础语法
+1.Go变量、结构体和函数声明及定义
+变量声明：
+.image images/gobase_var.png
+#.code 
+
+* Go基础
+结构体声明：
+.image images/gobase_typedef.png
+#.code 
+
+* Go基础
+函数声明：
+.image images/gobase_func.png
+#.code
+
+* Go基础
+2.语句：
+for语句：
+.image images/gobase_for.png
+#.code
+
+* Go基础
+defer语句：
+.image images/gobase_defer.png
+#.code
+
+* Go基础
+switch语句：
+.image images/gobase_switch.png
+#.code
+
+* Go基础
+switch语句：
+.image images/gobase_select.png
+#.code
+
+* Go基础
+3.包管理
+代码行宽：
+.image images/gobase_linewidth.png
+#.code
+
+* Go基础
+变量及函数命名：
+.image images/gobase_camel.png
+#.code
+
+* Go基础
+包初始化：
+.image images/gobase_initfunc.png
+#.code
+
+* Go基础
+包文件及目录命名：
+.image images/gobase_filedir.png
+#.code
+
+* Go基础
+包目录结构：
+.image images/gobase_pkgsubdir.png
+#.code
+
+* Go基础
+- 数据类型
+1.channel
+FIFO同步内存队列，实现协程间数据通信。所以，内存效率高，多用，常用。另外，还可以用于goroutine的退出控制，close(chan)会立即让全部的管道接收操作返回。
+2.map 
+实现结构是hash，成员无序。空间换时间，内存占用较多，仔细考虑。go里面对应的tree实现是treemap库。
+3.struct
+struct匿名字段也叫嵌入字段，类似于C++的继承，字段名称为该类型名称。go会把嵌入字段的成员提升到当前结构体作用域。基类成员类型可以是结构体类型或其指针类型。在声明该结构体并同时初始化时，需要嵌套构造。结构体不能递归嵌套，不管直接或间接。外层字段会覆盖内层相同名称字段。规则：
+1). 嵌入字段类型为结构体类型，子类类型可以访问基类或基类指针的方法集合；子类指针可以访问基类指针的方法集合。
+2). 嵌入字段类型为结构体指针，子类类型及子类指针都可以访问基类及基类指针的方法集合。
+
+* Go基础
+4.interface&method
+接口类型包括一个方法集合，接口和实现类型之间不要求显式继承，只需要该类型或其指针实现该接口定义的方法集合即可。任意类型都实现空接口对象interface{}。一个类型可以同时实现多个接口。接口类型也可以像结构体一样实现嵌入/继承，递归除外。
+method可以定义在任何类型上，除了指针和interface接口。比如，可以在一个函数上定义一个方法。参考http包HandlerFunc（类似只包含一个方法的匿名interface）。
+
 * Go实战
+
+* Go实战
+
+
+* Go进阶
 
 * Go进阶
 
