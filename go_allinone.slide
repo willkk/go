@@ -14,6 +14,8 @@ CDN产品部
 2. 函数栈分配在堆上，可动态伸缩。
 3. 函数之间的上下文切换开销小。
 .image images/go_threads.png
+#https://stackoverflow.com/questions/5440128/thread-context-switch-vs-process-context-switch
+
 * Go原理
 # 当前go调度逻辑
 *Go调度:*
@@ -128,6 +130,132 @@ struct匿名字段也叫嵌入字段，类似于C++的继承，字段名称为�
 4.interface&method
 接口类型包括一个方法集合，接口和实现类型之间不要求显式继承，只需要该类型或其指针实现该接口定义的方法集合即可。任意类型都实现空接口对象interface{}。一个类型可以同时实现多个接口。接口类型也可以像结构体一样实现嵌入/继承，递归除外。
 method可以定义在任何类型上，除了指针和interface接口。比如，可以在一个函数上定义一个方法。参考http包HandlerFunc（类似只包含一个方法的匿名interface）。
+5.func
+闭包closure：
+.code codes/code.go /Compose/,/print\(Compose/
+
+* Go基础
+- Go并发模型
+并发：同时处理很多事情。关于程序结构。
+并行：同时在做很多事情。关于程序执行。
+Go模型：把程序分解成可独立执行的单元（goroutine）；这些单元通过通信进行协作（channel）。
+
+* Go基础
+地鼠搬砖：一只地鼠
+#Move a pile of obsolete language manuals to the incinerator.
+
+.image images/gophersimple1.jpg
+
+一个地鼠，时间比较久。
+#With only one gopher this will take too long.
+
+* Go基础
+地鼠搬砖：多只地鼠
+#* More gophers!
+
+.image images/gophersimple3.jpg
+
+地鼠够了，小车不够。
+#More gophers are not enough; they need more carts.
+
+* Go基础
+地鼠搬砖：多只地鼠，多个小车
+#* More gophers and more carts
+
+.image images/gophersimple2.jpg
+
+砖堆和窑会有瓶颈，还需要协调地鼠。
+#This will go faster, but there will be bottlenecks at the pile and incinerator.
+#Also need to synchronize the gophers.
+#A message (that is, a communication between the gophers) will do.
+
+* Go基础
+地鼠搬砖：加倍砖堆和窑
+#* Double everything
+
+移除瓶颈
+#Remove the bottleneck; make them really independent.
+
+.image images/gophersimple4.jpg
+
+当前的并发组合包含两个地鼠过程。
+#This will consume input twice as fast.
+#The concurrent composition of two gopher procedures.
+
+* Go基础
+并发组合
+#* Concurrent composition
+
+当前设计并不自动并行，但是自动可并行的。这也暗示了其他模型。
+
+* Go基础
+新的设计
+
+.image images/gophercomplex0.jpg
+
+三只地鼠，每个地鼠独立执行完成相同的工作，相互之间需要协调。
+
+* Go基础
+新的设计
+#* Finer-grained concurrency
+新加一只地鼠还车
+
+.image images/gophercomplex1.jpg
+
+比最初一只地鼠工作快4倍。
+
+* Go基础
+思考：
+#* Observation
+
+我们通过添加并发过程到当前设计来提高性能。
+
+并发过程：
+#* Concurrent procedures
+1.装载
+2.运输
+3.卸载
+4.归还
+
+不同的并发设计产生不同的并行化方式。
+
+* More parallelization!
+
+We can now parallelize on the other axis; the concurrent design makes it easy. Eight gophers, all busy.
+
+.image images/gophercomplex2.jpg
+
+* Or maybe no parallelization at all
+
+Keep in mind, even if only one gopher is active at a time (zero parallelism), it's still a correct and concurrent solution.
+
+.image images/gophercomplex2.jpg
+
+* Another design
+
+Here's another way to structure the problem as the concurrent composition of gopher procedures.
+
+Two gopher procedures, plus a staging pile.
+
+.image images/gophercomplex3.jpg
+
+* Parallelize the usual way
+
+Run more concurrent procedures to get more throughput.
+
+.image images/gophercomplex4.jpg
+
+* Or a different way
+
+Bring the staging pile to the multi-gopher concurrent model:
+
+.image images/gophercomplex5.jpg
+
+* Full on optimization
+
+Use all our techniques. Sixteen gophers hard at work!
+
+.image images/gophercomplex6.jpg
 
 * Go实战
 
