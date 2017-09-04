@@ -4,6 +4,20 @@ Go 原理到进阶
 吴小川
 CDN产品部
 
+
+* Go 哲学
+
+
+* Go 哲学
+
+简单+可组合
+简单：(routine)
+每个代码片完成独立的，单一的功能。
+可组合：(cocurrency)
+简单的代码片可相互组合，完成整体功能。
+
+注：routine之间通信的通道是channel。
+
 * Go原理
 
 * Go原理
@@ -210,7 +224,7 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 我们通过添加并发过程到当前设计来提高性能。
 
-并发过程：
+4种不同的并发过程：
 #* Concurrent procedures
 1.装载
 2.运输
@@ -219,48 +233,107 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 不同的并发设计产生不同的并行化方式。
 
-* More parallelization!
-
-We can now parallelize on the other axis; the concurrent design makes it easy. Eight gophers, all busy.
-
+* Go基础
+进一步并行化：八只地鼠
 .image images/gophercomplex2.jpg
+即使同时只有一只地鼠在工作，程序也是并发的。
 
-* Or maybe no parallelization at all
-
-Keep in mind, even if only one gopher is active at a time (zero parallelism), it's still a correct and concurrent solution.
-
-.image images/gophercomplex2.jpg
-
-* Another design
-
-Here's another way to structure the problem as the concurrent composition of gopher procedures.
-
-Two gopher procedures, plus a staging pile.
-
+* Go基础
+另一种设计：两只地鼠+临时工作台
 .image images/gophercomplex3.jpg
 
-* Parallelize the usual way
-
-Run more concurrent procedures to get more throughput.
+* Go基础
+正常并行化：垂直
 
 .image images/gophercomplex4.jpg
 
-* Or a different way
-
-Bring the staging pile to the multi-gopher concurrent model:
-
+* Go基础
+#* Or a different way
+或者将临时工作台加入到多只地鼠的模型：水平
 .image images/gophercomplex5.jpg
 
-* Full on optimization
-
-Use all our techniques. Sixteen gophers hard at work!
+* Go基础
+彻底优化：垂直+水平
 
 .image images/gophercomplex6.jpg
 
 * Go实战
 
 * Go实战
+- go 命令
+1. go build
+2. go install
+3. go test
+4. go run
+5. go get
+6. go tool (性能监控pprof)
 
+* Go实战
+- cgo
+import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/cgo/。
+使用cgo命令添加C编译选项，如// #cgo LDFLAGS: -L/go/src/foo/libs -lfoo。
+
+* Go实战
+- vendor目录
+解决各个项目不同版本库代码冲突问题。
+在src目录建立vendor目录，项目使用的特定版本库和不同源的包目录。
+go优先去vendor目录搜索。
+
+* Go实战
+- 配置文件
+推荐json格式的配置文件。定义：
+.image images/goskill_jsonconf.png
+注：可选字段为对应类型的指针类型。如果字段为空，指针为nil。
+
+* Go实战
+配置文件
+.image images/goskill_jsonfile.png
+
+* Go实战
+使用：
+.image images/goskill_jsonparse.png
+
+* Go实战
+- 函数：命名返回参数
+普通代码：
+.image images/goskill_func.png
+
+* Go实战
+使用命名返回参数：
+.image images/goskill_func_new.png
+
+* Go实战
+- defer
+普通代码：
+.image images/goskill_nodefer.png
+
+* Go实战
+defer代码：
+.image images/goskill_defer.png
+
+* Go实战
+- log库
+seelog:
+支持同步/异步（获取频率：循环，定时，自适应）；支持丰富的输出级别，格式，终端和颜色；支持不同级别log的文件过滤；支持log文件回滚；支持动态更新logger设置。
+自定义：
+runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加前缀log.SetPrefix(); os.Getpid()获取PID等。
+
+* Go实战
+好的log格式示例：
+.image images/goskill_srslog.png
+说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request，比如请求的userid，协程的id，线程id等。
+快速查看单个请求的全流程结果，方便定位功能级和业务级错误。错误号定义：分类定义，如http 1xx-5xx。
+
+* Go实战
+- web framework
+beego：
+使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。
+Iris: 速度最快的web framework，简单。
+MVC：
+M：Model，数据模型，一般映射数据库表，作为数据层；V：View，视图，一般通过template生成，页面上有占位符，后端代码只需要填充数据到占位符即可，作为表示层；C：Controller，控制器，连接页面View和后端数据库Model，实现控制逻辑，作为逻辑层。
+.image images/goskill_mvc.png
+思想：
+将数据与表现解耦，提高代码的复用性。
 
 * Go进阶
 
