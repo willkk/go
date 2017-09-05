@@ -267,7 +267,7 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 4. go run
 5. go get
 6. go tool (性能监控pprof)
-
+7. godoc
 * Go实战
 - cgo
 import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/cgo/。
@@ -338,4 +338,35 @@ M：Model，数据模型，一般映射数据库表，作为数据层；V：View
 * Go进阶
 
 * Go进阶
+- 面向过程
+encoding/json:
+.image images/goadvance_procdef.png
+
+* Go进阶
+- 面向对象
+net/http包ServerMux:
+.image images/goadvance_classservermux.png
+
+* Go进阶
+- 面向接口
+hash:
+.image images/goadvance_interfacehash.png
+
+* Go进阶
+接口将数据和行为分离（类混合他们）
+.code codes/code.go /HandlerFunc/,/}/
+
+* Go进阶
+- 程序架构拆分（垂直+水平）
+
+* Go进阶
+- Mysql+ORM
+
+* Go进阶
+- RESTful/RPC
+
+* Go进阶
+- Docker/Kubernetes
+
+
 
