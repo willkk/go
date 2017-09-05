@@ -7,14 +7,16 @@ CDN产品部
 
 * Go 哲学
 
-
 * Go 哲学
+- 简单+可组合
 
-简单+可组合
 简单：(routine)
 每个代码片完成独立的，单一的功能。
+代码片放到单独的一个goroutine里面执行。
+
 可组合：(cocurrency)
 简单的代码片可相互组合，完成整体功能。
+组合的对象可以是struct，也可以是interface。
 
 注：routine之间通信的通道是channel。
 
@@ -353,8 +355,22 @@ hash:
 .image images/goadvance_interfacehash.png
 
 * Go进阶
-接口将数据和行为分离（类混合他们）
-.code codes/code.go /HandlerFunc/,/}/
+接口定义：
+.code codes/code.go /Interface1/,/Interface2/
+接口实现：
+.code codes/code.go /Interface2/,/Interface3/
+
+* Go进阶
+接口组合：
+.code codes/code.go /Interface3/,/Interface4/
+接口将数据和行为分离（class混合它们）
+.code codes/code.go /HandlerFunc1/,/HandlerFunc2/
+
+* Go进阶
+接口使用：
+.code codes/code.go /Interface4/,/Interface5/
+链式组合：
+.play codes/chain.go /LogReader{io/
 
 * Go进阶
 - 程序架构拆分（垂直+水平）
