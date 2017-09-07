@@ -374,9 +374,60 @@ hash:
 
 * Go进阶
 - 程序架构拆分（垂直+水平）
+垂直：
+
+ ┌──────────────────────────────────────────────────┐
+ │                                                  │
+ │                       App                        │
+ ├─────┬────────┬─────────┬──────────┬────────┬─────┤
+ │     │        │         │          │        │     │
+ │     │        │         │          │        │     │
+ │     │        │         │          │ outer  │     │
+ │ log │ config │ message │ database │ invoke │ ... │
+ │     │        │         │          │        │     │
+ │     │        │         │          │        │     │
+ │     │        │         │          │        │     │
+ │     │        │         │          │        │     │
+ └─────┴────────┴─────────┴──────────┴────────┴─────┘
+
+* Go进阶
+水平：
+
+ ┌─────┬────────────────────────────────────────────┐
+ │     │                                            │
+ │     │                 access layer               │
+ │     ├────────────────────────────────────────────┤
+ │     │                                            │
+ │     │            router/dispatcher layer         │
+ │ App │────────────────────────────────────────────┤
+ │     │                                            │
+ │     │               handler layer                │
+ │     ├────────────────────────────────────────────┤
+ │     │                                            │
+ │     │              database  layer               │
+ └─────┴────────────────────────────────────────────┘
+
+* Go进阶
+- Redis
+数据结构：
+
 
 * Go进阶
 - Mysql+ORM
+定义：
+.code codes/code.go /Model1/,/Model2/
+
+* Go进阶
+Create：
+.code codes/code.go /Model2/,/Model3/
+Retrieve:
+.code codes/code.go /Model3/,/Model4/
+
+* Go进阶
+Update:
+.code codes/code.go /Model4/,/Model5/
+Delete:
+.code codes/code.go /Model5/,/Model6/
 
 * Go进阶
 - RESTful/RPC
@@ -386,6 +437,4 @@ hash:
 
 * Go进阶
 - Docker/Kubernetes
-
-
 
