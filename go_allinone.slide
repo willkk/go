@@ -433,7 +433,14 @@ Delete:
 - RESTful/RPC
 
 * Go进阶
-- JWT/OAuth2.0
+- JWT(JSON Web Token)/OAuth2.0
+.image images/goadvance_jwt.png
+
+* Go进阶
+OAuth2.0:
+
+
+
 
 * Go进阶
 - Docker/Kubernetes
