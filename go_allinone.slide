@@ -144,11 +144,19 @@ struct匿名字段也叫嵌入字段，类似于C++的继承，字段名称为�
 
 * Go基础
 4.interface&method
-接口类型包括一个方法集合，接口和实现类型之间不要求显式继承，只需要该类型或其指针实现该接口定义的方法集合即可。任意类型都实现空接口对象interface{}。一个类型可以同时实现多个接口。接口类型也可以像结构体一样实现嵌入/继承，递归除外。
-method可以定义在任何类型上，除了指针和interface接口。比如，可以在一个函数上定义一个方法。参考http包HandlerFunc（类似只包含一个方法的匿名interface）。
-5.func
-闭包closure：
+接口类型包括一个method集合。
+只需要该类型或其指针实现该接口定义的方法集合即可。
+任意类型都实现空接口对象interface{}。
+一个类型可以同时实现多个接口。
+接口类型也可以像结构体一样实现嵌入/继承，递归除外。
+method可以定义在任何类型上，除了指针和interface接口。
+比如，可以在一个函数上定义一个方法。参考http包HandlerFunc。
+
+* Go基础
+5.func(闭包closure)
 .code codes/code.go /Compose/,/print\(Compose/
+.code codes/adder.go /START1/,/STOP1/
+.play codes/adder.go /START2/,/STOP2/
 
 * Go基础
 - Go并发模型
@@ -269,7 +277,8 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 4. go run
 5. go get
 6. go tool (性能监控pprof)
-7. godoc
+7. go doc
+
 * Go实战
 - cgo
 import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/cgo/。
@@ -298,7 +307,7 @@ go优先去vendor目录搜索。
 * Go实战
 - 函数：命名返回参数
 普通代码：
-.image images/goskill_func.png
+.image images/goskill_func.png  600 800
 
 * Go实战
 使用命名返回参数：
@@ -322,18 +331,16 @@ runtime.Caller(1)返回调用函数所在的全文件路径名和行号；添加
 
 * Go实战
 好的log格式示例：
-.image images/goskill_srslog.png
-说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request，比如请求的userid，协程的id，线程id等。
-快速查看单个请求的全流程结果，方便定位功能级和业务级错误。错误号定义：分类定义，如http 1xx-5xx。
+.image images/goskill_srslog.png  400  1000
+说明：基本信息包括标识pid和tid，错误级别，错误号等。需要唯一标识每一个request。
+错误号定义：分类定义，如http 1xx-5xx。
 
 * Go实战
-- web framework
-beego：
-使用MVC+ORM+RESTful，组件齐全，使用方便，适合简单的中小型web server，框架比较臃肿，实现性能也不并高。
+- web framework(beego, iris, martini)
+Beego：使用MVC+ORM+RESTful，组件齐全，使用方便;框架比较臃肿，实现性能不高。
 Iris: 速度最快的web framework，简单。
 MVC：
-M：Model，数据模型，一般映射数据库表，作为数据层；V：View，视图，一般通过template生成，页面上有占位符，后端代码只需要填充数据到占位符即可，作为表示层；C：Controller，控制器，连接页面View和后端数据库Model，实现控制逻辑，作为逻辑层。
-.image images/goskill_mvc.png
+.image images/goskill_mvc.png  400 500
 思想：
 将数据与表现解耦，提高代码的复用性。
 
@@ -408,8 +415,31 @@ hash:
  └─────┴────────────────────────────────────────────┘
 
 * Go进阶
-- Redis
-数据结构：
+- Redis 数据结构
+Dict:(hash,链地址法)
+
+ ┌──┐┌──┐┌──┐┌──┐      ┌──┐ 
+ │k1││k2││k3││k4│ ...  │km│ M slots
+ └──┘└──┘└──┘└──┘      └──┘
+  ↓   ↓   ↓   ↓         ↓
+ ┌─┐ ┌─┐ ┌─┐ ┌─┐       ┌─┐
+ │v│ │v│ │v│ │v│       │v│
+ ├─┤ ├─┤ └─┘ ├─┤       ├─┤
+ │v│ │v│     │v│       │v│ 
+ ├─┤ ├─┤     └─┘  ...  ├─┤ N conflicts
+ │v│ │.│               │v│
+ └─┘ │.│               └─┘
+     │.│
+     ├─┤
+     │v│     
+     └─┘      
+
+* Go进阶
+双buffer:
+.code codes/code.go /Redis1/,/Redis2/
+当M和N的比例达到一定阈值，进行rehash。rehash完成后，dict切换到新的hash指针。
+
+* Go进阶
 
 
 * Go进阶

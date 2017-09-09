@@ -1,3 +1,13 @@
+// Redis1 OMIT
+typedef struct dict {  
+    dictType *type;   
+    void *privdata;   
+    dictht ht[2]; //双buffer  
+    int rehashidx;   
+    int iterators;  
+} dict;
+// Redis2 OMIT
+
 
 func Compose(f, g func(x float) float)
                   func(x float) float {
