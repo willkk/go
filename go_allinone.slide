@@ -438,7 +438,8 @@ Hash:
 * Go进阶
 双buffer:
 .code codes/code.go /Redis1/,/Redis2/
-当M和N的比例达到一定阈值，进行rehash。rehash完成后，dict切换到新的hash指针。
+元素总数/桶数量比值大于阈值（5），进行rehash，size=2*size。
+采用多次拷贝的方式完成全部rehash，每次拷贝一个key。dict切换到新的hash指针。
 Zset:
 
  typedef struct zset {
