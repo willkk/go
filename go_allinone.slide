@@ -472,6 +472,16 @@ Delete:
 - JWT(JSON Web Token)/OAuth2.0
 .image images/goadvance_jwt.png
 
+
+#```seq
+#Client->Resource Owner: Authorization Request
+#Resource Owner-->Client: Authorization Grant
+#Client->Authorization Server: Authorization Grant
+#Authorization Server-->Client: Access Token
+#Client->Resource Server: Access Token
+#Resource Server-->Client: Protected Resource
+#```
+
 * Go进阶
 OAuth2.0:
 .image images/go_oauth2.png
