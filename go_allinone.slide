@@ -71,65 +71,64 @@ G - goroutine; P - logical processor; M - OS thread (machine)
 - 基础语法
 1.Go变量、结构体和函数声明及定义
 变量声明：
-.image images/gobase_var.png
-#.code 
+.code codes/code.go /go spec1/,/go spec2/
 
 * Go基础
 结构体声明：
-.image images/gobase_typedef.png
-#.code 
+.code codes/code.go /go struct1/,/go struct2/
 
 * Go基础
 函数声明：
-.image images/gobase_func.png
-#.code
+.code codes/code.go /go func1/,/go func2/
 
 * Go基础
 2.语句：
 for语句：
-.image images/gobase_for.png
-#.code
+.code codes/code.go /go for1/,/go for2/
 
 * Go基础
 defer语句：
-.image images/gobase_defer.png
-#.code
+.code codes/code.go /go defer1/,/go defer2/
 
 * Go基础
 switch语句：
-.image images/gobase_switch.png
-#.code
+.code codes/code.go /go switch/,/go switch2/
 
 * Go基础
-switch语句：
-.image images/gobase_select.png
-#.code
+select语句：
+.code codes/code.go /go select1/,/go select2/
 
 * Go基础
 3.包管理
 代码行宽：
-.image images/gobase_linewidth.png
-#.code
+.image images/gobase_linewidth.png 680 730 
 
 * Go基础
 变量及函数命名：
-.image images/gobase_camel.png
-#.code
+.code codes/code.go /go camel1/,/go camel2/
 
 * Go基础
 包初始化：
-.image images/gobase_initfunc.png
-#.code
+net/http/race.go
+
+ package http
+
+ func init() {
+ 	raceEnabled = true
+ }
+
 
 * Go基础
 包文件及目录命名：
-.image images/gobase_filedir.png
-#.code
+Go SDK:
 
-* Go基础
-包目录结构：
-.image images/gobase_pkgsubdir.png
-#.code
+- net/http/{/cgi, /internel, /httputil, /httptest, header.go, client.go, request.go, response.go}
+- bytes/{buffer.go, bytes.go, reader.go}
+- bufio/{bufio.go, scan.go}
+
+尽量简短，少用下划线。
+包结构：
+包级别的类型放在顶层目录的文件中，文件名一般就是包名称。
 
 * Go基础
 - 数据类型
@@ -292,17 +291,16 @@ go优先去vendor目录搜索。
 
 * Go实战
 - 配置文件
-推荐json格式的配置文件。定义：
-.image images/goskill_jsonconf.png
+.code codes/code.go /go jsonconf1/,/go jsonconf2/
 注：可选字段为对应类型的指针类型。如果字段为空，指针为nil。
 
 * Go实战
 配置文件
-.image images/goskill_jsonfile.png
+.code codes/code.go /go jsonparse1/,/go jsonparse2/
 
 * Go实战
 使用：
-.image images/goskill_jsonparse.png
+.code codes/code.go /go jsonparse1/,/go jsonparse2/
 
 * Go实战
 - 函数：命名返回参数
@@ -416,7 +414,10 @@ hash:
 
 * Go进阶
 - Redis 数据结构
-Dict:(hash,链地址法)
+Dict: String, Set, Hash (Int Set使用intset)
+Deque: List
+Skip-List: Sorted Set
+Hash:
 
  ┌──┐┌──┐┌──┐┌──┐      ┌──┐ 
  │k1││k2││k3││k4│ ...  │km│ M slots
@@ -438,9 +439,14 @@ Dict:(hash,链地址法)
 双buffer:
 .code codes/code.go /Redis1/,/Redis2/
 当M和N的比例达到一定阈值，进行rehash。rehash完成后，dict切换到新的hash指针。
+Zset:
 
-* Go进阶
+ typedef struct zset {
+     dict *dict;       // 快速检索单个member
+     zskiplist *zsl;   // 获取连续范围member
+ } zset;
 
+dict的score地址指向zsl里面node的score地址。
 
 * Go进阶
 - Mysql+ORM
