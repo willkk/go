@@ -474,10 +474,18 @@ Delete:
 
 * Go进阶
 OAuth2.0:
-
+.image images/go_oauth2.png
 
 
 
 * Go进阶
 - Docker/Kubernetes
+
+* Go进阶
+参考资料:
+.link https://golang.org/ref/spec https://golang.org/ref/spec
+.link https://golang.org/doc/effective_go.html https://golang.org/doc/effective_go.html
+.link https://github.com/golang/talks https://github.com/golang/talks
+.link https://github.com/golang/oauth2 https://github.com/golang/oauth2
+.link https://github.com/golang/perf https://github.com/golang/perf
 
