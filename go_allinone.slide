@@ -21,6 +21,8 @@ CDN产品部
 注：routine之间通信的通道是channel。
 
 * Go原理
+- 协程
+- Go调度
 
 * Go原理
 # 通用协程实现原理
@@ -66,6 +68,12 @@ G - goroutine; P - logical processor; M - OS thread (machine)
 .image images/gopher2.png
 
 * Go基础
+- 基础语法
+- 语句
+- 包管理
+- 数据类型
+- 并发模型
+
 
 * Go基础
 - 基础语法
@@ -82,7 +90,7 @@ G - goroutine; P - logical processor; M - OS thread (machine)
 .code codes/code.go /go func1/,/go func2/
 
 * Go基础
-2.语句：
+- 语句：
 for语句：
 .code codes/code.go /go for1/,/go for2/
 
@@ -99,7 +107,7 @@ select语句：
 .code codes/code.go /go select1/,/go select2/
 
 * Go基础
-3.包管理
+- 包管理
 代码行宽：
 .image images/gobase_linewidth.png 680 730 
 
@@ -165,50 +173,29 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 * Go基础
 地鼠搬砖：一只地鼠
-#Move a pile of obsolete language manuals to the incinerator.
-
 .image images/gophersimple1.jpg
-
 一个地鼠，时间比较久。
-#With only one gopher this will take too long.
 
 * Go基础
 地鼠搬砖：多只地鼠
-#* More gophers!
-
 .image images/gophersimple3.jpg
-
 地鼠够了，小车不够。
-#More gophers are not enough; they need more carts.
 
 * Go基础
 地鼠搬砖：多只地鼠，多个小车
-#* More gophers and more carts
-
 .image images/gophersimple2.jpg
 
 砖堆和窑会有瓶颈，还需要协调地鼠。
-#This will go faster, but there will be bottlenecks at the pile and incinerator.
-#Also need to synchronize the gophers.
-#A message (that is, a communication between the gophers) will do.
 
 * Go基础
 地鼠搬砖：加倍砖堆和窑
-#* Double everything
 
 移除瓶颈
-#Remove the bottleneck; make them really independent.
-
 .image images/gophersimple4.jpg
-
 当前的并发组合包含两个地鼠过程。
-#This will consume input twice as fast.
-#The concurrent composition of two gopher procedures.
 
 * Go基础
 并发组合
-#* Concurrent composition
-
 当前设计并不自动并行，但是自动可并行的。这也暗示了其他模型。
 
 * Go基础
@@ -220,7 +207,6 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 * Go基础
 新的设计
-#* Finer-grained concurrency
 新加一只地鼠还车
 
 .image images/gophercomplex1.jpg
@@ -229,7 +215,6 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 * Go基础
 思考：
-#* Observation
 
 我们通过添加并发过程到当前设计来提高性能。
 
@@ -253,20 +238,25 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 * Go基础
 正常并行化：垂直
-
 .image images/gophercomplex4.jpg
 
 * Go基础
-#* Or a different way
 或者将临时工作台加入到多只地鼠的模型：水平
 .image images/gophercomplex5.jpg
 
 * Go基础
 彻底优化：垂直+水平
-
 .image images/gophercomplex6.jpg
 
 * Go实战
+- go 命令
+- cgo
+- vendor
+- 配置文件
+- 命名返回参数
+- log
+- web framework
+
 
 * Go实战
 - go 命令
@@ -275,8 +265,11 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 3. go test
 4. go run
 5. go get
-6. go tool (性能监控pprof)
-7. go doc
+6. go doc
+
+* Go实战
+7. go tool (pprof, present)
+
 
 * Go实战
 - cgo
@@ -290,35 +283,32 @@ import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/c
 go优先去vendor目录搜索。
 
 * Go实战
-- 配置文件
+- 配置文件定义
 .code codes/code.go /go jsonconf1/,/go jsonconf2/
-注：可选字段为对应类型的指针类型。如果字段为空，指针为nil。
 
 * Go实战
 配置文件
-.code codes/code.go /go jsonparse1/,/go jsonparse2/
+.code codes/code.go /go jsonfile1/,/go jsonfile2/
 
 * Go实战
 使用：
 .code codes/code.go /go jsonparse1/,/go jsonparse2/
 
 * Go实战
-- 函数：命名返回参数
-普通代码：
-.image images/goskill_func.png  600 800
+- 函数：返回命名参数
+.code codes/code.go /go no named var1/,/go no named var2/
 
 * Go实战
 使用命名返回参数：
-.image images/goskill_func_new.png
+.code codes/code.go /go named var1/,/go named var2/
 
 * Go实战
-- defer
-普通代码：
-.image images/goskill_nodefer.png
+- defer 
+.code codes/code.go /go defer3/,/go defer4/
 
 * Go实战
 defer代码：
-.image images/goskill_defer.png
+.code codes/code.go /go defer5/,/go defer6/
 
 * Go实战
 - log库
@@ -343,74 +333,85 @@ MVC：
 将数据与表现解耦，提高代码的复用性。
 
 * Go进阶
-
-* Go进阶
-- 面向过程
-encoding/json:
-.image images/goadvance_procdef.png
-
-* Go进阶
-- 面向对象
-net/http包ServerMux:
-.image images/goadvance_classservermux.png
+- 面向接口
+- Redis 数据结构
+- Mysql+ORM
+- RESTful/RPC
+- JWT/OAuth2.0
+- Docker/Kubernetes
 
 * Go进阶
 - 面向接口
-hash:
-.image images/goadvance_interfacehash.png
-
-* Go进阶
 接口定义：
 .code codes/code.go /Interface1/,/Interface2/
 接口实现：
 .code codes/code.go /Interface2/,/Interface3/
+接口可以被任意类型实现。
+
+* Go进阶
+函数实现接口
+.code codes/code.go /HandlerFunc1/,/HandlerFunc2/
 
 * Go进阶
 接口组合：
 .code codes/code.go /Interface3/,/Interface4/
-接口将数据和行为分离（class混合它们）
-.code codes/code.go /HandlerFunc1/,/HandlerFunc2/
-
-* Go进阶
 接口使用：
 .code codes/code.go /Interface4/,/Interface5/
 链式组合：
 .play codes/chain.go /LogReader{io/
 
 * Go进阶
-- 程序架构拆分（垂直+水平）
-垂直：
+接口将 _数据_ 和 _行为_ 分离（class混合它们）
+函数不仅可以操作 _数据_，还可以操作 _行为_ 。
 
- ┌──────────────────────────────────────────────────┐
- │                                                  │
- │                       App                        │
- ├─────┬────────┬─────────┬──────────┬────────┬─────┤
- │     │        │         │          │        │     │
- │     │        │         │          │        │     │
- │     │        │         │          │ outer  │     │
- │ log │ config │ message │ database │ invoke │ ... │
- │     │        │         │          │        │     │
- │     │        │         │          │        │     │
- │     │        │         │          │        │     │
- │     │        │         │          │        │     │
- └─────┴────────┴─────────┴──────────┴────────┴─────┘
+    // Copy copies from src to dst until either EOF is reached
+    // on src or an error occurs.  It returns the number of bytes
+    // copied and the first error encountered while copying, if any.
+    func Copy(dst Writer, src Reader) (written int64, err error) {
+
+.play codes/chain.go /LogReader{io/
+
 
 * Go进阶
-水平：
+动态分发：
+.play codes/interface.go /START/,/STOP/
+接口类型可指向任意实现该接口的变量。
 
- ┌─────┬────────────────────────────────────────────┐
- │     │                                            │
- │     │                 access layer               │
- │     ├────────────────────────────────────────────┤
- │     │                                            │
- │     │            router/dispatcher layer         │
- │ App │────────────────────────────────────────────┤
- │     │                                            │
- │     │               handler layer                │
- │     ├────────────────────────────────────────────┤
- │     │                                            │
- │     │              database  layer               │
- └─────┴────────────────────────────────────────────┘
+
+#* Go进阶
+#- 程序架构拆分（垂直+水平）
+#垂直：
+
+# ┌──────────────────────────────────────────────────┐
+# │                                                  │
+# │                       App                        │
+# ├─────┬────────┬─────────┬──────────┬────────┬─────┤
+# │     │        │         │          │        │     │
+# │     │        │         │          │        │     │
+# │     │        │         │          │ outer  │     │
+# │ log │ config │ message │ database │ invoke │ ... │
+# │     │        │         │          │        │     │
+# │     │        │         │          │        │     │
+# │     │        │         │          │        │     │
+# │     │        │         │          │        │     │
+# └─────┴────────┴─────────┴──────────┴────────┴─────┘
+
+#* Go进阶
+#水平：
+
+# ┌─────┬────────────────────────────────────────────┐
+# │     │                                            │
+# │     │                 access layer               │
+# │     ├────────────────────────────────────────────┤
+# │     │                                            │
+# │     │            router/dispatcher layer         │
+# │ App │────────────────────────────────────────────┤
+# │     │                                            │
+# │     │               handler layer                │
+# │     ├────────────────────────────────────────────┤
+# │     │                                            │
+# │     │              database  layer               │
+# └─────┴────────────────────────────────────────────┘
 
 * Go进阶
 - Redis 数据结构
@@ -488,9 +489,13 @@ OAuth2.0:
 .image images/go_oauth2.png
 
 
-
 * Go进阶
 - Docker/Kubernetes
+1.自动化打包部署
+2.自动化测试和持续集成/部署
+
+* Go进阶
+
 
 * Go进阶
 参考资料:

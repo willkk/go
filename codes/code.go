@@ -86,6 +86,56 @@ for url := range chUrl {
 // go for2 OMIT
 
 
+// go defer3 OMIT
+// 普通代码
+func foo(key string) ([]byte, error) {
+    var resp interface{}
+    if err1 != nil { 
+        json, err := json.Marshal(resp)
+        if err != nil {
+            return nil, err
+        }
+        return json, nil
+    }
+    if err2 != nil { 
+        json, err := json.Marshal(resp)
+        if err != nil {
+            return nil, err
+        }
+        return json, nil
+    }
+    json, err := json.Marshal(resp)
+    //if err != nil {  ... }
+    return json, nil
+}
+
+// go defer4 OMIT
+
+
+// go defer5 OMIT
+func foo(key string) (json []byte, err error) {
+    var resp interface{}
+    defer func() {
+        json, err = json.Marshal(resp)
+    }()
+
+    if err1 != nil {
+        // resp = xx
+        return
+    }
+    // ...
+    if err2 != nil {
+        // resp = yy
+        return
+    }
+
+    // resp = zz
+    return
+}
+
+// go defer6 OMIT
+
+
 // go defer1 OMIT
 // defer后面的函数会在当前作用域退出之前被执行
 lock  := new(sync.Mutex)
@@ -105,6 +155,50 @@ func TestDefer() (ret int){
 	return
 }
 // go defer2 OMIT
+
+// go no named var1 OMIT
+// 普通代码
+func foo(key string) (string, int, map[int]interface{}, func(string, int) error) {
+    var (
+        str string
+        integer int
+        maps map[int]interface{}
+        func1 func (string, int) error
+    )
+
+    if err1 != nil {
+        //str, integer, maps, func1 = xx, xx, xx, xx 
+        return str, integer, maps, func1
+    }
+    // ...
+    if err2 != nil {
+        //str, integer, maps, func1 = yy, yy, yy, yy 
+        return str, integer, maps, func1
+    }
+
+    return str, integer, maps, func1
+}
+
+// go no named var2 OMIT
+
+// go named var1 OMIT
+func foo(key string) (name string, age int, friends map[string]interface{}, 
+                      bar func(string, int) error) {
+    // Init return values
+
+    if err1 != nil {
+        //name, age, friends, bar = xx, xx, xx, xx
+        return
+    }
+    // ...
+    if err2 != nil {
+        //name, age, friends, bar = yy, yy, yy, yy
+        return
+    }
+
+    return
+}
+// go named var2 OMIT
 
 
 // go switch OMIT
@@ -190,10 +284,6 @@ type MysqlConfig struct {
 	Addr string    `json:"addr"`	// mysql服务地址
 }
 
-type RedisConfig struct {
-	Addr string    `json:"addr"`	// redis服务地址
-}
-
 type LogConfig struct {
 	File string    `json:"file"`	// log配置文件路径
 }
@@ -205,7 +295,6 @@ type ServerConfig struct {
 	Log   	LogConfig        `json:"log"`	 // log配置
 	// ...
 }
-
 // go jsonconf2 OMIT
 
 
