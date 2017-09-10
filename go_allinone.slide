@@ -141,7 +141,7 @@ Go SDK:
 * Go基础
 - 数据类型
 1.channel
-FIFO同步内存队列，实现协程间数据通信。所以，内存效率高，多用，常用。另外，还可以用于goroutine的退出控制，close(chan)会立即让全部的管道接收操作返回。
+FIFO同步内存队列，实现协程间数据通信。另外，还可以用于goroutine的退出控制，close(chan)会立即让全部的管道接收操作返回，广播消息。
 2.map 
 实现结构是hash，成员无序。空间换时间，内存占用较多，仔细考虑。go里面对应的tree实现是treemap库。
 3.struct
