@@ -543,7 +543,7 @@ Delete:
 .code codes/code.go /Model5/,/Model6/
 
 * Go进阶
-- RESTful/RPC
+- RPC
 #talks/2015/gotham-grpc.slide
 
 #```seq
