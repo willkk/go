@@ -140,10 +140,18 @@ Go SDK:
 
 * Go基础
 - 数据类型
-1.channel
-FIFO同步内存队列，实现协程间数据通信。另外，还可以用于goroutine的退出控制，close(chan)会立即让全部的管道接收操作返回，广播消息。
+1.channel(goroutine间数据通信以及退出控制)
+.play codes/9.go /func.waiter/,/endmain/
+
+* Go基础
+.play codes/9b.go /func.worker/,/endmain/
+
+* Go基础
+.play codes/10.go /func.worker/,/endmain/
+
+* Go基础
 2.map 
-实现结构是hash，成员无序。空间换时间，内存占用较多，仔细考虑。go里面对应的tree实现是treemap库。
+实现结构是hash，成员无序。go里面对应的tree实现是treemap库。
 3.struct
 struct匿名字段也叫嵌入字段，类似于C++的继承，字段名称为该类型名称。go会把嵌入字段的成员提升到当前结构体作用域。基类成员类型可以是结构体类型或其指针类型。在声明该结构体并同时初始化时，需要嵌套构造。结构体不能递归嵌套，不管直接或间接。外层字段会覆盖内层相同名称字段。规则：
 1). 嵌入字段类型为结构体类型，子类类型可以访问基类或基类指针的方法集合；子类指针可以访问基类指针的方法集合。
@@ -324,9 +332,24 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 5. go get
 
-6. go doc
+6. go fmt
 
-7. go fmt
+
+* Go实战
+7. go doc
+
+        // Join concatenates the elements of elem to create a single string.
+        // The separator string sep is placed between elements in the resulting string.
+        func Join(elem []string, sep string) string {
+
+godoc 会抽取这些注释，显示到web页面:
+
+.image images/godoc.png
+包注释放在package前面。
+
+        // Package fmt…
+        package fmt
+
 
 * Go实战
 8. go vet
@@ -498,6 +521,20 @@ Delete:
 * Go进阶
 - RESTful/RPC
 
+
+#```seq
+#Client->Server:  username/passwd
+#Server->Auth Server:  username/passwd
+#Note right of Auth Server: check
+#Auth Server-->Server: ok
+#Note right of Server: create JWT
+#Server-->Client: JWT
+#Note left of Client: store JWT
+#Client->Server:  JWT
+#Note right of Server: validate
+#Server-->Client: data
+#```
+
 * Go进阶
 - JWT(JSON Web Token)/OAuth2.0
 .image images/goadvance_jwt.png
@@ -532,4 +569,6 @@ OAuth2.0:
 .link https://github.com/golang/talks https://github.com/golang/talks
 .link https://github.com/golang/oauth2 https://github.com/golang/oauth2
 .link https://github.com/golang/perf https://github.com/golang/perf
+
+* Questions?
 
