@@ -128,11 +128,23 @@ net/http/race.go
 
 * Go基础
 包文件及目录命名：
-Go SDK:
 
-- net/http/{/cgi, /internel, /httputil, /httptest, header.go, client.go, request.go, response.go}
-- bytes/{buffer.go, bytes.go, reader.go}
-- bufio/{bufio.go, scan.go}
+  net/http/
+         cgi/
+         internel/
+         httputil/
+         httptest/
+         header.go
+         client.go
+         request.go
+         response.go
+  bytes/
+      buffer.go
+      bytes.go
+      reader.go
+  bufio/
+      bufio.go
+      scan.go
 
 尽量简短，少用下划线。
 包结构：
@@ -355,18 +367,30 @@ godoc 会抽取这些注释，显示到web页面:
 8. go vet
 
 9. go tool (pprof, present)
-
+#https://cjting.me/golang/use-pprof-to-optimize-go/
+#https://blog.golang.org/profiling-go-programs
+#http://blog.ralch.com/tutorial/golang-performance-and-memory-analysis/
+#https://www.slideshare.net/yuichironakazawa2/golang-profiling-77163552
 
 * Go实战
 - cgo
 import "C"之前存放被注释的C代码。详细参考https://golang.org/cmd/cgo/。
 使用cgo命令添加C编译选项，如// #cgo LDFLAGS: -L/go/src/foo/libs -lfoo。
 
-* Go实战
 - vendor目录
 解决各个项目不同版本库代码冲突问题。
 在src目录建立vendor目录，项目使用的特定版本库和不同源的包目录。
 go优先去vendor目录搜索。
+
+  src/
+     cgi/
+     internel/
+     vendor/
+        github.com/
+        golang.org/
+        golang.ini/
+     foo.go
+     bar.go
 
 * Go实战
 - 配置文件定义
@@ -419,7 +443,7 @@ MVC：
 将数据与表现解耦，提高代码的复用性。
 
 * Go进阶
-- 面向接口
+- 多态(接口)
 - Redis 数据结构
 - Mysql+ORM
 - RESTful/RPC
@@ -427,7 +451,7 @@ MVC：
 - Docker/Kubernetes
 
 * Go进阶
-- 面向接口
+- 多态(接口)
 接口定义：
 .code codes/code.go /Interface1/,/Interface2/
 接口实现：
@@ -520,7 +544,7 @@ Delete:
 
 * Go进阶
 - RESTful/RPC
-
+#talks/2015/gotham-grpc.slide
 
 #```seq
 #Client->Server:  username/passwd
