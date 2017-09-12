@@ -388,7 +388,7 @@ go优先去vendor目录搜索。
      vendor/
         github.com/
         golang.org/
-        golang.ini/
+        gopkg.in/
      foo.go
      bar.go
 
