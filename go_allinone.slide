@@ -108,8 +108,28 @@ select语句：
 
 * Go基础
 - 包管理
-代码行宽：
-.image images/gobase_linewidth.png 680 730 
+代码行宽(errors.go)：
+
+ // Copyright 2011 The Go Authors.  All rights reserved.
+ // Use of this source code is governed by a BSD-style
+ // license that can be found in the LICENSE file.
+
+ // Package errors implements functions to manipulate errors.
+ package errors
+
+ // New returns an error that formats as the given text.
+ func New(text string) error {
+     return &errorString{text}
+ }
+
+ // errorString is a trivial implementation of error.
+ type errorString struct {
+     s string
+ }
+
+ func (e *errorString) Error() string {
+     return e.s
+ }
 
 * Go基础
 变量及函数命名：
@@ -346,9 +366,10 @@ Go模型：把程序分解成可独立执行的单元（goroutine）；这些单
 
 6. go fmt
 
+7. go vet
 
 * Go实战
-7. go doc
+8. go doc
 
         // Join concatenates the elements of elem to create a single string.
         // The separator string sep is placed between elements in the resulting string.
@@ -364,13 +385,51 @@ godoc 会抽取这些注释，显示到web页面:
 
 
 * Go实战
-8. go vet
+9. go tool (trace, pprof, present)
+.code codes/snippets.go /go pprof1/,/go pprof2/
+.play codes/fibonacci.go /fmt.Println\(fibonacci/
+ (pprof) top 5
+ 10.43s of 10.43s total (  100%)
+      flat  flat%   sum%        cum   cum%
+    10.43s   100%   100%     10.43s   100%  main.fibonacci
+         0     0%   100%     10.43s   100%  main.main
+         0     0%   100%     10.43s   100%  runtime.goexit
+         0     0%   100%     10.43s   100%  runtime.main
 
-9. go tool (pprof, present)
-#https://cjting.me/golang/use-pprof-to-optimize-go/
-#https://blog.golang.org/profiling-go-programs
-#http://blog.ralch.com/tutorial/golang-performance-and-memory-analysis/
-#https://www.slideshare.net/yuichironakazawa2/golang-profiling-77163552
+* Go实战
+ (pprof) list
+ Total: 10.43s
+ ROUTINE ======================== main.fibonacci in /home/wuxc/godoc/go/test.go
+    10.43s     14.33s (flat, cum)   100% of Total
+         .          .     15:    pprof.StartCPUProfile(f)
+         .          .     16:    fmt.Println(fibonacci(45))
+         .          .     17:    pprof.StopCPUProfile()
+         .          .     18:}
+         .          .     19:
+     3.15s      3.15s     20:func fibonacci(n int) int {
+     210ms      210ms     21:    if n < 2 {
+     540ms      540ms     22:        return n
+         .          .     23:    }
+     6.53s     10.43s     24:    return fibonacci(n-1) + fibonacci(n-2)
+         .          .     25:}
+ ROUTINE ======================== main.main in /home/wuxc/godoc/go/test.go
+         0     10.43s (flat, cum)   100% of Total
+         .          .     11:    f, err := os.Create("cpu-profile.prof")
+         .          .     12:    if err != nil {
+         .          .     13:        log.Fatal(err)
+         .          .     14:    }
+         .          .     15:    pprof.StartCPUProfile(f)
+         .     10.43s     16:    fmt.Println(fibonacci(45))
+         .          .     17:    pprof.StopCPUProfile()
+
+
+* Go实战
+pprof:
+.image images/pprof.png
+
+* Go实战
+trace:
+.image images/trace.png
 
 * Go实战
 - cgo
@@ -543,8 +602,8 @@ Delete:
 .code codes/code.go /Model5/,/Model6/
 
 * Go进阶
-- RPC
-#talks/2015/gotham-grpc.slide
+- RPC/RESTful
+
 
 #```seq
 #Client->Server:  username/passwd
