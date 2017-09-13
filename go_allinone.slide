@@ -505,8 +505,8 @@ MVC：
 - 多态(接口)
 - Redis 数据结构
 - Mysql+ORM
-- RESTful/RPC
 - JWT/OAuth2.0
+- Iris 框架思路
 - Docker/Kubernetes
 
 * Go进阶
@@ -601,9 +601,9 @@ Update:
 Delete:
 .code codes/code.go /Model5/,/Model6/
 
-* Go进阶
-- RPC/RESTful
-
+#* Go进阶
+#- RPC/RESTful
+#http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm
 
 #```seq
 #Client->Server:  username/passwd
@@ -638,20 +638,23 @@ OAuth2.0:
 
 
 * Go进阶
+- Iris框架
+
+* Go进阶
 - Docker/Kubernetes
 1.自动化打包部署
 2.自动化测试和持续集成/部署
+#https://mp.weixin.qq.com/s?__biz=MzIzMzExNDQ3MA==&mid=402412524&idx=1&sn=61962944124a5372e7c105c1c6d16a9e&scene=21#wechat_redirect
 
-* Go进阶
 
-
-* Go进阶
+* 
 参考资料:
 .link https://golang.org/ref/spec https://golang.org/ref/spec
 .link https://golang.org/doc/effective_go.html https://golang.org/doc/effective_go.html
 .link https://github.com/golang/talks https://github.com/golang/talks
 .link https://github.com/golang/oauth2 https://github.com/golang/oauth2
 .link https://github.com/golang/perf https://github.com/golang/perf
-
-* Questions?
+.image images/blank.png  100  600 
+   
+Questions?
 

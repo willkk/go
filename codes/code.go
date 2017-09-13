@@ -1,3 +1,11 @@
+
+// go blank1 OMIT
+
+
+
+// go blank2 OMIT
+
+
 // go spec1 OMIT
 // 右侧是简省形式
 var tel string = "110" // tel := "110"
