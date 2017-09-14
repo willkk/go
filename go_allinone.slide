@@ -506,8 +506,9 @@ MVC：
 - Redis 数据结构
 - Mysql+ORM
 - JWT/OAuth2.0
-- Iris 框架思路
-- Docker/Kubernetes
+#- Iris 框架思路
+- Microservices
+#- Docker/Kubernetes
 
 * Go进阶
 - 多态(接口)
@@ -637,13 +638,16 @@ OAuth2.0:
 .image images/go_oauth2.png
 
 
-* Go进阶
-- Iris框架
+#* Go进阶
+#- Iris框架
+
 
 * Go进阶
-- Docker/Kubernetes
-1.自动化打包部署
-2.自动化测试和持续集成/部署
+- Microservices
+
+#- Docker/Kubernetes
+#1.自动化打包部署
+#2.自动化测试和持续集成/部署
 #https://mp.weixin.qq.com/s?__biz=MzIzMzExNDQ3MA==&mid=402412524&idx=1&sn=61962944124a5372e7c105c1c6d16a9e&scene=21#wechat_redirect
 
 
