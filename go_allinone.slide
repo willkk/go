@@ -5,9 +5,9 @@ Go 原理到进阶
 CDN产品部
 
 
-* Go 哲学
+* Go Philosophy
 
-* Go 哲学
+* Go Philosophy
 - 简单+可组合
 
 简单：(routine)
@@ -637,27 +637,48 @@ Delete:
 OAuth2.0:
 .image images/go_oauth2.png
 
+* Go进阶
+- etcd
 
-#* Go进阶
-#- Iris框架
+一个可靠的，分布式k-v集群存储系统。解决：
+1. 网络分区时的leader选举问题。
+2. 可以监测配置是否改变，用于配置分发。
+3. 可以用于服务发现及负载均衡。
+4. 分布式锁。
 
+.link https://github.com/coreos/etcd/  https://github.com/coreos/etcd/
 
 * Go进阶
-- Microservices
+- Kubernetes(K8S)
+Kubernetes是一个自动化部署，伸缩和管理容器化应用的系统。重要概念:
+1.Kubernetes Master
+k8s主控节点。
+2.Node/Minion
+k8s工作节点，可以是物理机或虚拟机。 
+3.Pod
+容器集合。
+4.Container
+容器单元，如docker或rocket。
+5.Replication Controller
+复制控制器，控制pod数量。
+6.Service
+一组相同功能pod的抽象。
+7.Label
+对pod附加属性，方便区分。
+
+
 #http://www.360doc.com/content/16/0402/09/32165413_547246334.shtml
-#- Docker/Kubernetes
-#1.自动化打包部署
-#2.自动化测试和持续集成/部署
 #https://mp.weixin.qq.com/s?__biz=MzIzMzExNDQ3MA==&mid=402412524&idx=1&sn=61962944124a5372e7c105c1c6d16a9e&scene=21#wechat_redirect
 
 
 * 
 参考资料:
-.link https://golang.org/ref/spec https://golang.org/ref/spec
-.link https://golang.org/doc/effective_go.html https://golang.org/doc/effective_go.html
-.link https://github.com/golang/talks https://github.com/golang/talks
+.link https://golang.org/ref/spec https://golang.org/ref/spec (go标准规范)  
+.link https://golang.org/doc/effective_go.html https://golang.org/doc/effective_go.html (高效go)
+.link https://github.com/golang/talks https://github.com/golang/talks (go语言设计文档及会议)
 .link https://github.com/golang/oauth2 https://github.com/golang/oauth2
 .link https://github.com/golang/perf https://github.com/golang/perf
+.link https://godoc.org/golang.org/x/tools/present  https://godoc.org/golang.org/x/tools/present (present工具)
 .image images/blank.png  100  600 
    
 Questions?
