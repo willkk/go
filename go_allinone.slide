@@ -652,20 +652,37 @@ OAuth2.0:
 - Kubernetes(K8S)
 Kubernetes是一个自动化部署，伸缩和管理容器化应用的系统。重要概念:
 1.Kubernetes Master
-k8s主控节点。
-2.Node/Minion
+k8s主控节点，全部控制的入口。状态结果存入etcd。
+2.etcd
+存储服务的状态，配置，命名空间和控制信息。
+3.scheduler
+根据当前集群资源情况和部署配置来生成部署策略。
+4.Node/Minion
 k8s工作节点，可以是物理机或虚拟机。 
-3.Pod
+5.Pod
 容器集合。
-4.Container
+6.Container
 容器单元，如docker或rocket。
-5.Replication Controller
+7.Replication Controller
 复制控制器，控制pod数量。
-6.Service
-一组相同功能pod的抽象。
-7.Label
-对pod附加属性，方便区分。
 
+* Go进阶
+8.Service
+一组相同功能pod的抽象。
+9.Label
+对pod附加属性，方便区分。
+10.kubelet
+master节点的代理，与master通信，从etcd获取服务配置。
+11.kube-proxy
+负责Node内网络路由。
+12.kubectl
+命令行工具，与api server。
+
+* Go进阶
+.image images/k8s_arch.png
+
+#https://x-team.com/blog/introduction-kubernetes-architecture/
+#https://developer.adroitlogic.com/ips/docs/17.07/architecture/kubernetes-architecture.html
 
 #http://www.360doc.com/content/16/0402/09/32165413_547246334.shtml
 #https://mp.weixin.qq.com/s?__biz=MzIzMzExNDQ3MA==&mid=402412524&idx=1&sn=61962944124a5372e7c105c1c6d16a9e&scene=21#wechat_redirect
