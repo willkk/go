@@ -513,8 +513,8 @@ MVC：
 - Mysql+ORM
 - JWT/OAuth2.0
 #- Iris 框架思路
-- Microservices
-#- Docker/Kubernetes
+#- Microservices
+- Kubernetes
 
 * Go进阶
 - 多态(接口)
