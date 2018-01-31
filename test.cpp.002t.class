@@ -7,7 +7,7 @@ B::_ZTV1B: 3u entries
 Class B
    size=8 align=4
    base size=8 base align=4
-B (0x0xb6e48000) 0
+B (0x0xb6e43000) 0
     vptr=((& B::_ZTV1B) + 8u)
 
 Vtable for C
@@ -21,14 +21,14 @@ C::_ZTV1C: 5u entries
 Class C
    size=4 align=4
    base size=4 base align=4
-C (0x0xb6e48038) 0 nearly-empty
+C (0x0xb6e43038) 0 nearly-empty
     vptr=((& C::_ZTV1C) + 8u)
 
 Vtable for D
 D::_ZTV1D: 11u entries
 0     (int (*)(...))0
 4     (int (*)(...))(& _ZTI1D)
-8     (int (*)(...))B::foo
+8     (int (*)(...))D::foo
 12    (int (*)(...))D::derive
 16    (int (*)(...))D::~D
 20    (int (*)(...))D::~D
@@ -41,10 +41,10 @@ D::_ZTV1D: 11u entries
 Class D
    size=12 align=4
    base size=12 base align=4
-D (0x0xb6e404c0) 0
+D (0x0xb6e3b4c0) 0
     vptr=((& D::_ZTV1D) + 8u)
-  B (0x0xb6e48070) 0
-      primary-for D (0x0xb6e404c0)
-  C (0x0xb6e480a8) 8 nearly-empty
+  B (0x0xb6e43070) 0
+      primary-for D (0x0xb6e3b4c0)
+  C (0x0xb6e430a8) 8 nearly-empty
       vptr=((& D::_ZTV1D) + 32u)
 
