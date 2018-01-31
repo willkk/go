@@ -1,0 +1,50 @@
+Vtable for B
+B::_ZTV1B: 3u entries
+0     (int (*)(...))0
+4     (int (*)(...))(& _ZTI1B)
+8     (int (*)(...))B::foo
+
+Class B
+   size=8 align=4
+   base size=8 base align=4
+B (0x0xb6e48000) 0
+    vptr=((& B::_ZTV1B) + 8u)
+
+Vtable for C
+C::_ZTV1C: 5u entries
+0     (int (*)(...))0
+4     (int (*)(...))(& _ZTI1C)
+8     (int (*)(...))C::bar
+12    (int (*)(...))C::~C
+16    (int (*)(...))C::~C
+
+Class C
+   size=4 align=4
+   base size=4 base align=4
+C (0x0xb6e48038) 0 nearly-empty
+    vptr=((& C::_ZTV1C) + 8u)
+
+Vtable for D
+D::_ZTV1D: 11u entries
+0     (int (*)(...))0
+4     (int (*)(...))(& _ZTI1D)
+8     (int (*)(...))B::foo
+12    (int (*)(...))D::derive
+16    (int (*)(...))D::~D
+20    (int (*)(...))D::~D
+24    (int (*)(...))-8
+28    (int (*)(...))(& _ZTI1D)
+32    (int (*)(...))C::bar
+36    (int (*)(...))D::_ZThn8_N1DD1Ev
+40    (int (*)(...))D::_ZThn8_N1DD0Ev
+
+Class D
+   size=12 align=4
+   base size=12 base align=4
+D (0x0xb6e404c0) 0
+    vptr=((& D::_ZTV1D) + 8u)
+  B (0x0xb6e48070) 0
+      primary-for D (0x0xb6e404c0)
+  C (0x0xb6e480a8) 8 nearly-empty
+      vptr=((& D::_ZTV1D) + 32u)
+
