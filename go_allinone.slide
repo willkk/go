@@ -715,6 +715,7 @@ master节点的代理，与master通信，从etcd获取服务配置。
 .link https://godoc.org/golang.org/x/tools/present  https://godoc.org/golang.org/x/tools/present (present工具)
 .link https://jwt.io/ https://jwt.io(jwt)
 .link https://oauth.net/2/ https://oauth.net/2 (oauth2.0)
+.link https://tour.golang.org/list  https://tour.golang.org/list (golang语法示例)
 #.image images/blank.png  100  600 
    
 Questions?
