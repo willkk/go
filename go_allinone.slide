@@ -29,6 +29,7 @@ CDN产品部
 * Go原理
 - 协程
 - Go调度
+- Go GC
 
 * Go原理
 # 通用协程实现原理
@@ -72,6 +73,13 @@ G - goroutine; P - logical processor; M - OS thread (machine)
 .image images/gopher.png
 进程启动的时候生成一个主Gopher（M），并最多生成GOMAXPROCS（不大于系统逻辑核心数）个小车（P）。go命令随后创建goroutine（书，G）。砖太多，小车空闲，就创建新的地鼠M去搬砖。
 .image images/gopher2.png
+
+* Go原理
+三色标记法：
+1.初始全部节点为white。
+2.将根节点标记为black，子节点标记为grey。
+3.递归将子节点作为根节点并标记为black，子节点标记为grey。
+4.最终节点只有white和black两种，其中white为没有被引用的节点，可以回收。
 
 * Go基础
 - 基础语法
