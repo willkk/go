@@ -76,10 +76,15 @@ G - goroutine; P - logical processor; M - OS thread (machine)
 
 * Go原理
 三色标记法：
-1.初始全部节点为white。
-2.将根节点标记为black，子节点标记为grey。
-3.递归将子节点作为根节点并标记为black，子节点标记为grey。
-4.最终节点只有white和black两种，其中white为没有被引用的节点，可以回收。
+
+1. 初始全部节点为white。
+2. 将根节点标记为black，子节点标记为grey。
+3. 递归将子节点作为根节点并标记为black，子节点标记为grey。
+4. 最终节点只有white和black两种，其中white为没有被引用的节点，可以回收。
+
+目标是：
+1. 立即恢复用户协程。
+2. 专门协程慢慢清理可以回收的内存节点，降低用户协程的阻塞时间。
 
 * Go基础
 - 基础语法
